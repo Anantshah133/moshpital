@@ -25,7 +25,7 @@ const Appointment = () => {
         let today = new Date();
         let allSlots = [];
     
-        for (let i = 1; i < 8; i++) {
+        for (let i = 0; i < 7; i++) {
             let currentDate = new Date(today);
             currentDate.setDate(today.getDate() + i);
     
