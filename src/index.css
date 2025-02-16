@@ -15,3 +15,7 @@
 .speciality-menu::-webkit-scrollbar {
     @apply hidden;
 }
+
+::-webkit-scrollbar {
+    display: none
+}
