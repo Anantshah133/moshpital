@@ -25,12 +25,12 @@ const Login = () => {
                     </div>
                 }
                 <div className="w-full">
-                    <p>Email</p>
+                    <p>Email : </p>
                     <input className="border border-[#DADADA] rounded w-full p-2 mt-1" type="email"
                         onChange={(e) => setEmail(e.target.value)} required value={email} />
                 </div>
                 <div className="w-full">
-                    <p>Password</p>
+                    <p>Password : </p>
                     <input className="border border-[#DADADA] rounded w-full p-2 mt-1" onChange={(e) => setPassword(e.target.value)} type="password" required value={password} />
                 </div>
 
