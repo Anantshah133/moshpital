@@ -5,19 +5,20 @@ import { specialityData } from "../assets/assets";
 
 const Doctors = () => {
     const { speciality } = useParams();
+    const [showFilter, setShowFilter] = useState(false);
     const [filterDoc, setFilterDoc] = useState([]);
     const {doctors} = useContext(AppContext);
     const navigate = useNavigate();
 
-    const applyFilter = () => {
-        if(speciality) {
-            setFilterDoc(doctors.filter(doc => doc.speciality == speciality));
-        } else {
-            setFilterDoc(doctors);
-        }
-    }
-
+    
     useEffect(()=>{
+        const applyFilter = () => {
+            if(speciality) {
+                setFilterDoc(doctors.filter(doc => doc.speciality == speciality));
+            } else {
+                setFilterDoc(doctors);
+            }
+        }
         applyFilter();
     }, [doctors, speciality]);
 
@@ -25,10 +26,10 @@ const Doctors = () => {
         <div>
             <p className="text-gray-600">Browse through the doctors specialist.</p>
             <div className="flex flex-col sm:flex-row items-start gap-5 mt-5">
-                <div className="w-full sm:w-auto flex flex-col gap-4 text-sm text-gray-600">
+                <button className={`py-1 px-3 border rounded text-sm transition-all sm:hidden ${showFilter ? 'bg-primary text-white' : ''}`} onClick={()=>setShowFilter(!showFilter)}>Filters</button>
+                <div className={`w-full sm:w-auto flex flex-col gap-4 text-sm text-gray-600 ${showFilter ? 'flex' : 'hidden sm:flex'}`}>
                     {specialityData.map((item, idx)=>(
-                        <p onClick={()=>speciality === '' ? navigate('/doctors') : navigate(`/doctors/${item.speciality}`)} 
-                        className={`w-full sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality === `${item.speciality}` ? "bg-blue-500 text-white" : "" }`} key={idx} >
+                        <p onClick={() => navigate(`/doctors/${item.speciality}`)} className={`w-full sm:w-auto pl-3 py-1.5 pr-16 border border-gray-300 rounded transition-all cursor-pointer ${speciality === `${item.speciality}` ? "bg-blue-500 text-white" : "" }`} key={idx} >
 
                             {item.speciality}
 
